@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Types>
+    <Type>
+        <Name>System.IO.DirectoryInfo</Name>
+        <Members>
+            <ScriptProperty>
+                <Name>Icon</Name>
+                <GetScriptBlock>Format-GlyphShellIcon -Item $_ | Out-String -NoNewline</GetScriptBlock>
+            </ScriptProperty>
+            <ScriptProperty>
+                <Name>GlyphName</Name>
+                <GetScriptBlock>Format-GlyphShell -Item $_ | Out-String -NoNewline</GetScriptBlock>
+            </ScriptProperty>
+            <ScriptProperty>
+                <Name>GlyphMode</Name>
+                <GetScriptBlock>Format-GlyphShellMode -Item $_ | Out-String -NoNewline</GetScriptBlock>
+            </ScriptProperty>
+            <ScriptProperty>
+                <Name>GlyphDate</Name>
+                <GetScriptBlock>Format-GlyphShellDate -Item $_ | Out-String -NoNewline</GetScriptBlock>
+            </ScriptProperty>
+            <ScriptProperty>
+                <Name>GlyphSize</Name>
+                <GetScriptBlock>Format-GlyphShellSize -Item $_ | Out-String -NoNewline</GetScriptBlock>
+            </ScriptProperty>
+        </Members>
+    </Type>
+    <Type>
+        <Name>System.IO.FileInfo</Name>
+        <Members>
+            <ScriptProperty>
+                <Name>Icon</Name>
+                <GetScriptBlock>Format-GlyphShellIcon -Item $_ | Out-String -NoNewline</GetScriptBlock>
+            </ScriptProperty>
+            <ScriptProperty>
+                <Name>GlyphName</Name>
+                <GetScriptBlock>Format-GlyphShell -Item $_ | Out-String -NoNewline</GetScriptBlock>
+            </ScriptProperty>
+            <ScriptProperty>
+                <Name>GlyphMode</Name>
+                <GetScriptBlock>Format-GlyphShellMode -Item $_ | Out-String -NoNewline</GetScriptBlock>
+            </ScriptProperty>
+            <ScriptProperty>
+                <Name>GlyphDate</Name>
+                <GetScriptBlock>Format-GlyphShellDate -Item $_ | Out-String -NoNewline</GetScriptBlock>
+            </ScriptProperty>
+            <ScriptProperty>
+                <Name>GlyphSize</Name>
+                <GetScriptBlock>Format-GlyphShellSize -Item $_ | Out-String -NoNewline</GetScriptBlock>
+            </ScriptProperty>
+        </Members>
+    </Type>
+</Types>
