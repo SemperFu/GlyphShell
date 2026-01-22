@@ -10,9 +10,22 @@ public class ModuleInitializer : IModuleAssemblyInitializer
 {
     public void OnImport()
     {
+        var assemblyDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!;
+
         ThemeManager.Initialize();
 
-        var assemblyDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!;
+        var bundledThemesDir = Path.Combine(assemblyDir, "themes");
+        if (!Directory.Exists(bundledThemesDir))
+        {
+            var candidate = Path.GetFullPath(Path.Combine(assemblyDir, "..", "..", "..", "..", "..", "module", "themes"));
+            if (Directory.Exists(candidate))
+                bundledThemesDir = candidate;
+        }
+        if (Directory.Exists(bundledThemesDir))
+            ThemeManager.LoadThemesFromDirectory(bundledThemesDir);
+
+        ThemeManager.LoadThemesFromDirectory(ThemeManager.UserThemesDirectory);
+
         var formatFile = Path.Combine(assemblyDir, "..", "..", "..", "..", "..", "module", "GlyphShell.format.ps1xml");
         if (!File.Exists(formatFile))
             formatFile = Path.Combine(assemblyDir, "GlyphShell.format.ps1xml");

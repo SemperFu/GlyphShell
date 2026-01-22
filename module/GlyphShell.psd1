@@ -5,7 +5,7 @@
     Author            = 'SemperFu'
     CompanyName       = 'SemperFu'
     Copyright         = '(c) 2026 SemperFu. All rights reserved.'
-    Description       = 'High-performance PowerShell module for file icons and rich directory listings. Built in C#, inspired by Terminal-Icons and eza.'
+    Description       = 'High-performance PowerShell module for file icons, themes, and rich directory listings. Built in C#, inspired by Terminal-Icons and eza.'
     PowerShellVersion = '7.5'
     FunctionsToExport = @()
     CmdletsToExport   = @(
@@ -15,6 +15,17 @@
         'Format-GlyphShellMode',
         'Format-GlyphShellDate',
         'Show-GlyphShell',
+        'Get-GlyphShellTheme',
+        'Set-GlyphShellTheme',
+        'Show-GlyphShellTheme',
+        'Add-GlyphShellIconTheme',
+        'Add-GlyphShellColorTheme',
+        'Remove-GlyphShellTheme',
+        'Export-GlyphShellTheme',
+        'Import-GlyphShellLegacyThemes',
+        'Add-GlyphShellIcon',
+        'Remove-GlyphShellIcon',
+        'Get-GlyphShellOverrides',
         'Set-GlyphShellOption'
     )
     VariablesToExport = @()
@@ -23,7 +34,7 @@
     TypesToProcess    = @('GlyphShell.types.ps1xml')
     PrivateData       = @{
         PSData = @{
-            Tags       = @('Terminal', 'Icons', 'NerdFonts', 'Glyphs', 'Color')
+            Tags       = @('Terminal', 'Icons', 'NerdFonts', 'Glyphs', 'Color', 'Themes')
             ProjectUri = 'https://github.com/SemperFu/GlyphShell'
         }
     }
