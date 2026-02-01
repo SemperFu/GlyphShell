@@ -99,6 +99,12 @@ public class ImportGlyphShellLegacyThemesCmdlet : PSCmdlet
                     {
                         Host.UI.WriteLine($"    {green}\u2713{reset} Imported {gold}{name}{reset} {dim}from {psd1}{reset}");
                         imported++;
+
+                        // Auto-expand sparse color themes
+                        if (name.Contains("Color", StringComparison.OrdinalIgnoreCase))
+                        {
+                            TryExpandColorTheme(name, psd1, dim, cyan, gold, green, reset);
+                        }
                     }
                     else
                     {
@@ -114,5 +120,65 @@ public class ImportGlyphShellLegacyThemesCmdlet : PSCmdlet
         else
             Host.UI.WriteLine($"  {dim}No themes found to import.{reset}");
         Host.UI.WriteLine("");
+    }
+
+    private void TryExpandColorTheme(string themeName, string psd1Path,
+        string dim, string cyan, string gold, string green, string reset)
+    {
+        try
+        {
+            var content = File.ReadAllText(psd1Path);
+            var sparseColors = ParseColorMappings(content);
+
+            if (sparseColors.Count == 0 || sparseColors.Count >= 300)
+                return;
+
+            var expandedName = themeName.EndsWith("-colors", StringComparison.OrdinalIgnoreCase)
+                ? themeName : themeName + "-colors";
+
+            var yaml = ThemeExpander.ExpandSparseTheme(expandedName, sparseColors);
+
+            var configDir = System.IO.Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
+                ".config", "GlyphShell", "themes");
+            Directory.CreateDirectory(configDir);
+            var outputPath = System.IO.Path.Combine(configDir, $"{expandedName}.yaml");
+
+            File.WriteAllText(outputPath, yaml);
+            ThemeManager.LoadYamlTheme(outputPath);
+
+            Host.UI.WriteLine($"    {cyan}\u21AA{reset} Expanded {gold}{sparseColors.Count}{reset} \u2192 {gold}900+{reset} mappings as {gold}{expandedName}{reset}");
+            Host.UI.WriteLine($"      {dim}Saved to {outputPath}{reset}");
+            Host.UI.WriteLine($"      {dim}Category colors inferred from existing mappings{reset}");
+        }
+        catch
+        {
+            // Expansion is best-effort, don't fail the import
+        }
+    }
+
+    /// <summary>
+    /// Extracts extension→ANSI-color mappings from .psd1 content.
+    /// Converts ANSI escape sequences to hex colors for ThemeExpander.
+    /// </summary>
+    private static Dictionary<string, string> ParseColorMappings(string content)
+    {
+        var result = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+
+        // Match patterns like: '.ext' = "`e[38;2;R;G;Bm"  or  '.ext' = "$([char]27)[38;2;R;G;Bm"
+        var regex = new System.Text.RegularExpressions.Regex(
+            @"'(\.\w+)'\s*=\s*[""'].*?38;2;(\d+);(\d+);(\d+)",
+            System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+
+        foreach (System.Text.RegularExpressions.Match match in regex.Matches(content))
+        {
+            var ext = match.Groups[1].Value;
+            var r = int.Parse(match.Groups[2].Value);
+            var g = int.Parse(match.Groups[3].Value);
+            var b = int.Parse(match.Groups[4].Value);
+            result[ext] = $"#{r:X2}{g:X2}{b:X2}";
+        }
+
+        return result;
     }
 }

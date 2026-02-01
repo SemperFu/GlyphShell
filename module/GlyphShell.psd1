@@ -23,6 +23,7 @@
         'Remove-GlyphShellTheme',
         'Export-GlyphShellTheme',
         'Import-GlyphShellLegacyThemes',
+        'New-GlyphShellTheme',
         'Add-GlyphShellIcon',
         'Remove-GlyphShellIcon',
         'Get-GlyphShellOverrides',
