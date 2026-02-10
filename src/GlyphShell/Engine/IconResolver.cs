@@ -5,7 +5,7 @@ using GlyphShell.Themes;
 
 namespace GlyphShell.Engine;
 
-public record struct ResolvedIcon(string? Glyph, string? ColorSequence, string? Target, string? Suffix = null);
+public record struct ResolvedIcon(string? Glyph, string? ColorSequence, string? Target, string? Suffix = null, string? Badge = null);
 
 public class IconResolver
 {

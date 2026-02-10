@@ -3,51 +3,95 @@
     <Type>
         <Name>System.IO.DirectoryInfo</Name>
         <Members>
-            <ScriptProperty>
+            <CodeProperty>
                 <Name>Icon</Name>
-                <GetScriptBlock>Format-GlyphShellIcon -Item $_ | Out-String -NoNewline</GetScriptBlock>
-            </ScriptProperty>
-            <ScriptProperty>
+                <GetCodeReference>
+                    <TypeName>GlyphShell.Engine.FormatHelpers</TypeName>
+                    <MethodName>GetColoredIcon</MethodName>
+                </GetCodeReference>
+            </CodeProperty>
+            <CodeProperty>
                 <Name>GlyphName</Name>
-                <GetScriptBlock>Format-GlyphShell -Item $_ | Out-String -NoNewline</GetScriptBlock>
-            </ScriptProperty>
-            <ScriptProperty>
+                <GetCodeReference>
+                    <TypeName>GlyphShell.Engine.FormatHelpers</TypeName>
+                    <MethodName>GetColoredName</MethodName>
+                </GetCodeReference>
+            </CodeProperty>
+            <CodeProperty>
                 <Name>GlyphMode</Name>
-                <GetScriptBlock>Format-GlyphShellMode -Item $_ | Out-String -NoNewline</GetScriptBlock>
-            </ScriptProperty>
-            <ScriptProperty>
+                <GetCodeReference>
+                    <TypeName>GlyphShell.Engine.FormatHelpers</TypeName>
+                    <MethodName>GetColoredMode</MethodName>
+                </GetCodeReference>
+            </CodeProperty>
+            <CodeProperty>
                 <Name>GlyphDate</Name>
-                <GetScriptBlock>Format-GlyphShellDate -Item $_ | Out-String -NoNewline</GetScriptBlock>
-            </ScriptProperty>
-            <ScriptProperty>
+                <GetCodeReference>
+                    <TypeName>GlyphShell.Engine.FormatHelpers</TypeName>
+                    <MethodName>GetColoredDate</MethodName>
+                </GetCodeReference>
+            </CodeProperty>
+            <CodeProperty>
                 <Name>GlyphSize</Name>
-                <GetScriptBlock>Format-GlyphShellSize -Item $_ | Out-String -NoNewline</GetScriptBlock>
-            </ScriptProperty>
+                <GetCodeReference>
+                    <TypeName>GlyphShell.Engine.FormatHelpers</TypeName>
+                    <MethodName>GetColoredSize</MethodName>
+                </GetCodeReference>
+            </CodeProperty>
+            <CodeProperty>
+                <Name>GlyphGit</Name>
+                <GetCodeReference>
+                    <TypeName>GlyphShell.Engine.FormatHelpers</TypeName>
+                    <MethodName>GetColoredGit</MethodName>
+                </GetCodeReference>
+            </CodeProperty>
         </Members>
     </Type>
     <Type>
         <Name>System.IO.FileInfo</Name>
         <Members>
-            <ScriptProperty>
+            <CodeProperty>
                 <Name>Icon</Name>
-                <GetScriptBlock>Format-GlyphShellIcon -Item $_ | Out-String -NoNewline</GetScriptBlock>
-            </ScriptProperty>
-            <ScriptProperty>
+                <GetCodeReference>
+                    <TypeName>GlyphShell.Engine.FormatHelpers</TypeName>
+                    <MethodName>GetColoredIcon</MethodName>
+                </GetCodeReference>
+            </CodeProperty>
+            <CodeProperty>
                 <Name>GlyphName</Name>
-                <GetScriptBlock>Format-GlyphShell -Item $_ | Out-String -NoNewline</GetScriptBlock>
-            </ScriptProperty>
-            <ScriptProperty>
+                <GetCodeReference>
+                    <TypeName>GlyphShell.Engine.FormatHelpers</TypeName>
+                    <MethodName>GetColoredName</MethodName>
+                </GetCodeReference>
+            </CodeProperty>
+            <CodeProperty>
                 <Name>GlyphMode</Name>
-                <GetScriptBlock>Format-GlyphShellMode -Item $_ | Out-String -NoNewline</GetScriptBlock>
-            </ScriptProperty>
-            <ScriptProperty>
+                <GetCodeReference>
+                    <TypeName>GlyphShell.Engine.FormatHelpers</TypeName>
+                    <MethodName>GetColoredMode</MethodName>
+                </GetCodeReference>
+            </CodeProperty>
+            <CodeProperty>
                 <Name>GlyphDate</Name>
-                <GetScriptBlock>Format-GlyphShellDate -Item $_ | Out-String -NoNewline</GetScriptBlock>
-            </ScriptProperty>
-            <ScriptProperty>
+                <GetCodeReference>
+                    <TypeName>GlyphShell.Engine.FormatHelpers</TypeName>
+                    <MethodName>GetColoredDate</MethodName>
+                </GetCodeReference>
+            </CodeProperty>
+            <CodeProperty>
                 <Name>GlyphSize</Name>
-                <GetScriptBlock>Format-GlyphShellSize -Item $_ | Out-String -NoNewline</GetScriptBlock>
-            </ScriptProperty>
+                <GetCodeReference>
+                    <TypeName>GlyphShell.Engine.FormatHelpers</TypeName>
+                    <MethodName>GetColoredSize</MethodName>
+                </GetCodeReference>
+            </CodeProperty>
+            <CodeProperty>
+                <Name>GlyphGit</Name>
+                <GetCodeReference>
+                    <TypeName>GlyphShell.Engine.FormatHelpers</TypeName>
+                    <MethodName>GetColoredGit</MethodName>
+                </GetCodeReference>
+            </CodeProperty>
         </Members>
     </Type>
 </Types>
