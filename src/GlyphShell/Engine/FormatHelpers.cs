@@ -71,6 +71,19 @@ public static class FormatHelpers
         }
     }
 
+    /// <summary>Project/content-type badge glyph for the Badge column.</summary>
+    public static string GetColoredBadge(PSObject instance)
+    {
+        try
+        {
+            if (instance?.BaseObject is not FileSystemInfo fsi) return "";
+            var resolved = CachedResolve(fsi);
+            return resolved.Badge is not null
+                ? $"{resolved.ColorSequence}{resolved.Badge}{ColorEngine.Reset}"
+                : "";
+        }
+        catch { return ""; }
+    }
 
     /// <summary>Per-character colored mode flags (d, a, r, h, s, l).</summary>
     public static string GetColoredMode(PSObject instance)

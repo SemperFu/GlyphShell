@@ -3,6 +3,7 @@
     <Type>
         <Name>System.IO.DirectoryInfo</Name>
         <Members>
+            <!-- CodeProperties: fast C# static methods called by ETS and Format-Table -->
             <CodeProperty>
                 <Name>Icon</Name>
                 <GetCodeReference>
@@ -43,6 +44,13 @@
                 <GetCodeReference>
                     <TypeName>GlyphShell.Engine.FormatHelpers</TypeName>
                     <MethodName>GetColoredGit</MethodName>
+                </GetCodeReference>
+            </CodeProperty>
+            <CodeProperty>
+                <Name>Badge</Name>
+                <GetCodeReference>
+                    <TypeName>GlyphShell.Engine.FormatHelpers</TypeName>
+                    <MethodName>GetColoredBadge</MethodName>
                 </GetCodeReference>
             </CodeProperty>
         </Members>
@@ -50,6 +58,7 @@
     <Type>
         <Name>System.IO.FileInfo</Name>
         <Members>
+            <!-- CodeProperties: fast C# static methods called by ETS and Format-Table -->
             <CodeProperty>
                 <Name>Icon</Name>
                 <GetCodeReference>
@@ -90,6 +99,13 @@
                 <GetCodeReference>
                     <TypeName>GlyphShell.Engine.FormatHelpers</TypeName>
                     <MethodName>GetColoredGit</MethodName>
+                </GetCodeReference>
+            </CodeProperty>
+            <CodeProperty>
+                <Name>Badge</Name>
+                <GetCodeReference>
+                    <TypeName>GlyphShell.Engine.FormatHelpers</TypeName>
+                    <MethodName>GetColoredBadge</MethodName>
                 </GetCodeReference>
             </CodeProperty>
         </Members>

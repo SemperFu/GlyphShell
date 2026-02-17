@@ -5,12 +5,13 @@
     Author            = 'SemperFu'
     CompanyName       = 'SemperFu'
     Copyright         = '(c) 2026 SemperFu. All rights reserved.'
-    Description       = 'High-performance PowerShell module for file icons, git status, themes, and rich directory listings. Built in C#, inspired by Terminal-Icons and eza.'
+    Description       = 'High-performance PowerShell module for file icons, git status, project detection, and rich directory listings. Built in C#, inspired by Terminal-Icons and eza.'
     PowerShellVersion = '7.5'
     FunctionsToExport = @()
     CmdletsToExport   = @(
         'Format-GlyphShell',
         'Format-GlyphShellIcon',
+        'Format-GlyphShellBadge',
         'Format-GlyphShellGit',
         'Format-GlyphShellSize',
         'Format-GlyphShellMode',

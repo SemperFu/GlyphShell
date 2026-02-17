@@ -9,7 +9,9 @@ public class SetGlyphShellOptionCmdlet : PSCmdlet
     [Parameter] public SwitchParameter Diagnostics { get; set; }
     [Parameter] public SwitchParameter DateAge { get; set; }
     [Parameter][ValidatePattern(@"^#[0-9A-Fa-f]{6}$")] public string? DateColor { get; set; }
+    [Parameter] public SwitchParameter ProjectDetection { get; set; }
     [Parameter] public SwitchParameter GitStatus { get; set; }
+    [Parameter] public SwitchParameter BadgeMerge { get; set; }
 
     protected override void ProcessRecord()
     {
@@ -34,10 +36,24 @@ public class SetGlyphShellOptionCmdlet : PSCmdlet
             WriteVerbose($"GlyphShell date color set to {DateColor}, age coloring disabled");
         }
 
+        if (MyInvocation.BoundParameters.ContainsKey("ProjectDetection"))
+        {
+            GlyphShellSettings.ProjectDetectionEnabled = ProjectDetection.IsPresent;
+            WriteVerbose($"GlyphShell project detection: {(GlyphShellSettings.ProjectDetectionEnabled ? "enabled" : "disabled")}");
+            refreshFormat = true;
+        }
+
         if (MyInvocation.BoundParameters.ContainsKey("GitStatus"))
         {
             GlyphShellSettings.GitStatusEnabled = GitStatus.IsPresent;
             WriteVerbose($"GlyphShell git status: {(GlyphShellSettings.GitStatusEnabled ? "enabled" : "disabled")}");
+            refreshFormat = true;
+        }
+
+        if (MyInvocation.BoundParameters.ContainsKey("BadgeMerge"))
+        {
+            GlyphShellSettings.BadgeMerge = BadgeMerge.IsPresent;
+            WriteVerbose($"GlyphShell badge merge: {(GlyphShellSettings.BadgeMerge ? "enabled" : "disabled")}");
             refreshFormat = true;
         }
 

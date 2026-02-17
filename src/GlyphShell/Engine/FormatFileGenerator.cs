@@ -3,10 +3,18 @@ using System.Text;
 
 namespace GlyphShell.Engine;
 
+/// <summary>
+/// Generates format.ps1xml content dynamically based on current settings.
+/// Writes to a temp file that can be prepended via Update-FormatData.
+/// </summary>
 public static class FormatFileGenerator
 {
     private static string? _lastFormatPath;
 
+    /// <summary>
+    /// Generates a format.ps1xml file reflecting current settings and returns its path.
+    /// Reuses the same temp file path across calls (overwritten each time).
+    /// </summary>
     public static string Generate()
     {
         _lastFormatPath ??= Path.Combine(Path.GetTempPath(), "GlyphShell.format.dynamic.ps1xml");
@@ -102,6 +110,20 @@ public static class FormatFileGenerator
                                     <Width>2</Width>
                                     <Alignment>left</Alignment>
                                 </TableColumnHeader>
+        """);
+
+        if (GlyphShellSettings.ProjectDetectionEnabled && !GlyphShellSettings.BadgeMerge)
+        {
+            sb.AppendLine("""
+                                <TableColumnHeader>
+                                    <Label>&#xF02B;</Label>
+                                    <Width>2</Width>
+                                    <Alignment>left</Alignment>
+                                </TableColumnHeader>
+            """);
+        }
+
+        sb.AppendLine("""
                                 <TableColumnHeader>
                                     <Label>Name</Label>
                                 </TableColumnHeader>
@@ -134,8 +156,74 @@ public static class FormatFileGenerator
                                         <TableColumnItem>
                                             <PropertyName>Icon</PropertyName>
                                         </TableColumnItem>
+        """);
+
+        if (GlyphShellSettings.ProjectDetectionEnabled && !GlyphShellSettings.BadgeMerge)
+        {
+            sb.AppendLine("""
+                                        <TableColumnItem>
+                                            <PropertyName>Badge</PropertyName>
+                                        </TableColumnItem>
+            """);
+        }
+
+        sb.AppendLine("""
                                         <TableColumnItem>
                                             <PropertyName>GlyphName</PropertyName>
+                                        </TableColumnItem>
+                                    </TableColumnItems>
+                                </TableRowEntry>
+                            </TableRowEntries>
+                        </TableControl>
+                    </View>
+
+                    <View>
+                        <Name>GlyphShellSelect</Name>
+                        <ViewSelectedBy>
+                            <TypeName>GlyphShell.SelectedItem</TypeName>
+                        </ViewSelectedBy>
+                        <TableControl>
+                            <TableHeaders>
+                                <TableColumnHeader>
+                                    <Label>Mode</Label>
+                                    <Width>7</Width>
+                                </TableColumnHeader>
+                                <TableColumnHeader>
+                                    <Label>Date</Label>
+                                    <Width>25</Width>
+                                    <Alignment>right</Alignment>
+                                </TableColumnHeader>
+                                <TableColumnHeader>
+                                    <Label>Size</Label>
+                                    <Width>14</Width>
+                                    <Alignment>right</Alignment>
+                                </TableColumnHeader>
+                                <TableColumnHeader>
+                                    <Label>&#xF016;</Label>
+                                    <Width>2</Width>
+                                </TableColumnHeader>
+                                <TableColumnHeader>
+                                    <Label>Name</Label>
+                                </TableColumnHeader>
+                            </TableHeaders>
+                            <TableRowEntries>
+                                <TableRowEntry>
+                                    <Wrap/>
+                                    <TableColumnItems>
+                                        <TableColumnItem>
+                                            <PropertyName>Mode</PropertyName>
+                                        </TableColumnItem>
+                                        <TableColumnItem>
+                                            <PropertyName>Date</PropertyName>
+                                        </TableColumnItem>
+                                        <TableColumnItem>
+                                            <PropertyName>Size</PropertyName>
+                                        </TableColumnItem>
+                                        <TableColumnItem>
+                                            <PropertyName>Icon</PropertyName>
+                                        </TableColumnItem>
+                                        <TableColumnItem>
+                                            <PropertyName>Name</PropertyName>
                                         </TableColumnItem>
                                     </TableColumnItems>
                                 </TableRowEntry>
