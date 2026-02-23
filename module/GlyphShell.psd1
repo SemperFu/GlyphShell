@@ -5,7 +5,7 @@
     Author            = 'SemperFu'
     CompanyName       = 'SemperFu'
     Copyright         = '(c) 2026 SemperFu. All rights reserved.'
-    Description       = 'High-performance PowerShell module for file icons, git status, project detection, and rich directory listings. Built in C#, inspired by Terminal-Icons and eza.'
+    Description       = 'High-performance PowerShell module for file icons, git status, project detection, plugins, and rich directory listings. Built in C#, inspired by Terminal-Icons and eza.'
     PowerShellVersion = '7.5'
     FunctionsToExport = @()
     CmdletsToExport   = @(
@@ -30,6 +30,11 @@
         'Remove-GlyphShellIcon',
         'Get-GlyphShellOverrides',
         'Set-GlyphShellOption',
+        'Register-GlyphShellPlugin',
+        'Unregister-GlyphShellPlugin',
+        'Get-GlyphShellPlugins',
+        'Enable-GlyphShellPlugin',
+        'Disable-GlyphShellPlugin',
         'Select-GlyphShell'
     )
     VariablesToExport = @()
@@ -38,7 +43,7 @@
     TypesToProcess    = @('GlyphShell.types.ps1xml')
     PrivateData       = @{
         PSData = @{
-            Tags       = @('Terminal', 'Icons', 'NerdFonts', 'Glyphs', 'Color', 'Git', 'Themes')
+            Tags       = @('Terminal', 'Icons', 'NerdFonts', 'Glyphs', 'Color', 'Git', 'Themes', 'Plugins')
             ProjectUri = 'https://github.com/SemperFu/GlyphShell'
         }
     }

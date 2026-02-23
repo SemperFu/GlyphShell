@@ -51,6 +51,21 @@ public class IconResolver
             return new ResolvedIcon(overrideGlyph, colorSeq, null);
         }
 
+        // 0.5. Plugin overrides (checked after user overrides, before built-in chain)
+        string? pluginSuffix = null;
+        if (PluginManager.TryResolve(fileInfo, out var pluginResult))
+        {
+            pluginSuffix = pluginResult!.Suffix;
+            if (pluginResult.IconName is not null || pluginResult.ColorSequence is not null)
+            {
+                iconName = pluginResult.IconName;
+                colorSeq = pluginResult.ColorSequence;
+                iconName ??= isDirectory ? iconTheme.DefaultDirectoryIcon : iconTheme.DefaultFileIcon;
+                colorSeq ??= isDirectory ? colorTheme.DefaultDirectoryColor : colorTheme.DefaultFileColor;
+                string? pluginGlyph = _glyphs.GetValueOrDefault(iconName);
+                return new ResolvedIcon(pluginGlyph, colorSeq, null, pluginSuffix);
+            }
+        }
 
         // 1. Handle symlinks/junctions
         if (fileInfo.LinkTarget is not null)
@@ -139,6 +154,6 @@ public class IconResolver
         // Resolve glyph name to actual Unicode character
         string? glyph = _glyphs.GetValueOrDefault(iconName);
 
-        return new ResolvedIcon(glyph, colorSeq, target, null, projectBadge);
+        return new ResolvedIcon(glyph, colorSeq, target, pluginSuffix, projectBadge);
     }
 }
