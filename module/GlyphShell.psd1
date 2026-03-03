@@ -5,7 +5,7 @@
     Author            = 'SemperFu'
     CompanyName       = 'SemperFu'
     Copyright         = '(c) 2026 SemperFu. All rights reserved.'
-    Description       = 'High-performance PowerShell module for file icons, git status, project detection, plugins, and rich directory listings. Built in C#, inspired by Terminal-Icons and eza.'
+    Description       = 'Hooks into Get-ChildItem to add Nerd Font icons, colors, and extra columns to your directory listings. Built in C#, no configuration required. Inspired by Terminal-Icons and eza.'
     PowerShellVersion = '7.5'
     FunctionsToExport = @()
     CmdletsToExport   = @(
@@ -17,6 +17,8 @@
         'Format-GlyphShellMode',
         'Format-GlyphShellDate',
         'Show-GlyphShell',
+        'Show-GlyphShellTree',
+        'Show-GlyphShellGrid',
         'Get-GlyphShellTheme',
         'Set-GlyphShellTheme',
         'Show-GlyphShellTheme',
@@ -38,13 +40,24 @@
         'Select-GlyphShell'
     )
     VariablesToExport = @()
-    AliasesToExport   = @()
+    AliasesToExport   = @('gstree', 'gsgrid')
     FormatsToProcess  = @('GlyphShell.format.ps1xml')
     TypesToProcess    = @('GlyphShell.types.ps1xml')
     PrivateData       = @{
         PSData = @{
-            Tags       = @('Terminal', 'Icons', 'NerdFonts', 'Glyphs', 'Color', 'Git', 'Themes', 'Plugins')
+            Tags       = @('Terminal', 'Icons', 'NerdFonts', 'Glyphs', 'Color', 'Git', 'DirectoryListing', 'PowerShell', 'ls', 'dir', 'Get-ChildItem', 'eza', 'Terminal-Icons')
             ProjectUri = 'https://github.com/SemperFu/GlyphShell'
+            LicenseUri = 'https://github.com/SemperFu/GlyphShell/blob/master/LICENSE'
+            IconUri    = 'https://raw.githubusercontent.com/SemperFu/GlyphShell/master/glyph-preview.png'
+            ReleaseNotes = 'Initial public release. Still early, some things are rough.
+
+Works well: file/folder icons for 900+ types, colored dates/sizes/mode, per-extension overrides, gstree and gsgrid.
+
+Preview/WIP: theme system (8 themes included but switching is hit or miss), git status, plugin API.
+
+Project type detection is on by default. Disable with Set-GlyphShellOption -ProjectDetection:$false if it causes slowdowns.
+
+https://github.com/SemperFu/GlyphShell/releases/tag/v0.1.0'
         }
     }
 }
