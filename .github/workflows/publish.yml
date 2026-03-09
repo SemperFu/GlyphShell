@@ -1,0 +1,54 @@
+name: Publish to PowerShell Gallery
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Install PowerShell 7.5
+      run: winget install --id Microsoft.PowerShell --silent --accept-source-agreements --accept-package-agreements
+      shell: cmd
+
+    - name: Setup .NET 9
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '9.0.x'
+
+    - name: Build (Release)
+      run: dotnet build src/GlyphShell/GlyphShell.csproj -c Release
+
+    - name: Stage module for publishing
+      shell: pwsh
+      run: |
+        $staging = "$env:RUNNER_TEMP\GlyphShell"
+        New-Item -ItemType Directory -Path $staging | Out-Null
+
+        # Copy module files
+        Copy-Item module\* $staging -Recurse -Exclude "*.psd1"
+
+        # Copy built DLL and all dependencies
+        Copy-Item src\GlyphShell\bin\Release\net9.0\*.dll $staging
+
+        # Placeholder for dynamically generated format file (generated at runtime by FormatFileGenerator)
+        '<?xml version="1.0" encoding="utf-8"?><Configuration><ViewDefinitions></ViewDefinitions></Configuration>' | Set-Content "$staging\GlyphShell.format.ps1xml"
+
+        # Copy and patch the manifest — RootModule must be just the DLL name
+        $psd1 = Get-Content module\GlyphShell.psd1 -Raw
+        $psd1 = $psd1 -replace [regex]::Escape('../src/GlyphShell/bin/Release/net9.0/GlyphShell.dll'), 'GlyphShell.dll'
+        $psd1 | Set-Content "$staging\GlyphShell.psd1" -NoNewline
+
+        # Stamp the version from the release tag (strips leading 'v')
+        $version = "${{ github.ref_name }}" -replace '^v', ''
+        Update-ModuleManifest -Path "$staging\GlyphShell.psd1" -ModuleVersion $version
+
+    - name: Publish to PowerShell Gallery
+      shell: pwsh
+      run: |
+        $staging = "$env:RUNNER_TEMP\GlyphShell"
+        Publish-Module -Path $staging -NuGetApiKey "${{ secrets.PSGALLERY_API_KEY }}" -Verbose
