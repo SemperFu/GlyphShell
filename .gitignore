@@ -56,3 +56,8 @@ Thumbs.db
 ehthumbs.db
 Desktop.ini
 .DS_Store
+
+## Copilot
+.github/copilot-instructions.md
+AGENTS.md
+CLAUDE.md

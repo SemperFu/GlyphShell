@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>GlyphShell - File Icons &amp; Git Status for PowerShell</title>
+  <meta name="description" content="A high-performance PowerShell module for file icons, git status, and rich directory listings. Built in C# on .NET 9.">
+  <meta property="og:title" content="GlyphShell">
+  <meta property="og:description" content="Beautiful file icons, git status, tree views, and 8 themes for PowerShell. 8x faster than Terminal-Icons.">
+  <meta property="og:image" content="https://raw.githubusercontent.com/SemperFu/GlyphShell/master/docs/demo/glyph-preview.png">
+  <meta property="og:url" content="https://semperfu.github.io/GlyphShell/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="GlyphShell">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="GlyphShell">
+  <meta name="twitter:description" content="Beautiful file icons, git status, tree views, and 8 themes for PowerShell. 8x faster than Terminal-Icons.">
+  <meta name="twitter:image" content="https://raw.githubusercontent.com/SemperFu/GlyphShell/master/docs/demo/glyph-preview.png">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://semperfu.github.io/GlyphShell/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="asciinema-player.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- hero -->
+  <section class="hero">
+    <h1 class="fade-in">GlyphShell</h1>
+    <p class="tagline fade-in">A high-performance PowerShell module for file icons, git status, and rich directory listings. Built in C# on .NET 9.</p>
+
+    <div class="badges fade-in">
+      <span class="badge"><span class="dot" style="background:#178600"></span>C# / .NET 9</span>
+      <span class="badge">900+ icons</span>
+      <span class="badge">8 themes</span>
+      <span class="badge">MIT</span>
+    </div>
+  </section>
+
+  <!-- interactive demo -->
+  <section class="demo">
+    <div class="player-wrap">
+      <div id="player"></div>
+    </div>
+  </section>
+
+  <!-- install -->
+  <section class="hero" style="padding-top: 12px; padding-bottom: 32px;">
+    <div class="install fade-in">
+      <div class="install-bar">
+        <span>PowerShell</span>
+        <button onclick="copyInstall(this)">Copy</button>
+      </div>
+      <pre><span class="cmd">Install-Module</span> <span class="arg">GlyphShell</span> -Scope CurrentUser
+<span class="cmd">Import-Module</span>  <span class="arg">GlyphShell</span></pre>
+    </div>
+  </section>
+
+  <!-- features (minimal list) -->
+  <section class="features">
+    <div class="feature"><div class="icon">🎨</div><div><h3>Hooks into Get-ChildItem</h3><p>Auto icons, real .NET objects</p></div></div>
+    <div class="feature"><div class="icon">🌳</div><div><h3>Tree &amp; Grid Views</h3><p>gstree, gsgrid, -Size</p></div></div>
+    <div class="feature"><div class="icon">🎭</div><div><h3>8 Built-in Themes</h3><p>YAML export/import + overrides</p></div></div>
+    <div class="feature"><div class="icon">📂</div><div><h3>Project Detection</h3><p>15 project + 10 content types</p></div></div>
+    <div class="feature"><div class="icon">🔌</div><div><h3>Plugin System</h3><p>Sandboxed ScriptBlock plugins</p></div></div>
+    <div class="feature"><div class="icon">⚡</div><div><h3>8.4x Faster</h3><p>vs Terminal-Icons at 100k files</p></div></div>
+  </section>
+
+  <!-- benchmarks -->
+  <section class="comparison">
+    <h2>Performance vs Terminal-Icons</h2>
+    <p class="sub">Full pipeline benchmarks: <code>Get-ChildItem | Format-Table</code> with all columns colored.</p>
+    <div class="bench-grid">
+      <div class="bench-card"><div class="num">2.2x</div><div class="label">Import speed</div></div>
+      <div class="bench-card"><div class="num">5.4x</div><div class="label">84 files</div></div>
+      <div class="bench-card"><div class="num">7.9x</div><div class="label">6k files</div></div>
+      <div class="bench-card"><div class="num">8.4x</div><div class="label">100k files</div></div>
+    </div>
+  </section>
+
+  <!-- cta -->
+  <div class="cta">
+    <a href="https://github.com/SemperFu/GlyphShell">
+      <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      View on GitHub
+    </a>
+  </div>
+
+  <footer>
+    Built by <a href="https://github.com/SemperFu">SemperFu</a>
+    &middot; Demo played with <a href="https://github.com/asciinema/asciinema-player">asciinema-player</a>
+  </footer>
+
+  <script src="asciinema-player.min.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>

@@ -48,7 +48,7 @@
             Tags       = @('Terminal', 'Icons', 'NerdFonts', 'Glyphs', 'Color', 'Git', 'DirectoryListing', 'PowerShell', 'ls', 'dir', 'Get-ChildItem', 'eza', 'Terminal-Icons')
             ProjectUri = 'https://github.com/SemperFu/GlyphShell'
             LicenseUri = 'https://github.com/SemperFu/GlyphShell/blob/master/LICENSE'
-            IconUri    = 'https://raw.githubusercontent.com/SemperFu/GlyphShell/master/glyph-preview.png'
+            IconUri    = 'https://raw.githubusercontent.com/SemperFu/GlyphShell/master/docs/demo/glyph-preview.png'
             ReleaseNotes = 'Initial public release. Still early, some things are rough.
 
 Works well: file/folder icons for 900+ types, colored dates/sizes/mode, per-extension overrides, gstree and gsgrid.
